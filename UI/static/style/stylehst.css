@@ -1,0 +1,123 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #3d9aa7;
+    
+    background-attachment:fixed;
+    background-size: cover;
+}.topnav {
+    padding: 30px 0;
+    background: rgba(0, 0, 0,.8);
+	width: 100%;
+    color: #fff;
+}
+.topnav .links{
+   margin-left: 16px;
+}
+.topnav a{
+    padding: 10px 10px;
+    text-decoration: none;
+    display: inline;
+    background-color: #00bcd4;
+    border-radius: 5px;
+}
+.heada{
+    margin: 50px 10%;
+    width: 80%;
+    padding: 20px 40px ;
+    background: rgba(0, 0, 0,.8);
+    box-sizing: border-box;
+    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
+    border-radius: 15px;
+    text-align: center;
+    color: #fff;
+}
+.heada h2{
+    font-size: 40px;
+    color: #00bcd4;
+}.heada h3{
+    margin-top: -30px;
+    font-size: 25px;
+    color: #00bcd4;
+}
+.heada a{
+    text-decoration: none;
+}
+.btn-logout{
+    float: right;
+    margin-right: 16px;
+}
+.quest{
+    margin: 50px 5%;
+    width: 90%;
+    padding: 20px 20px ;
+    background: rgba(0, 0, 0,.8);
+    box-sizing: border-box;
+    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
+    border-radius: 10px;
+    color:  white;
+    text-align: left;
+}
+.quarter{
+    width: 25%;
+    float: left;
+    text-align: center;
+}
+/* .quest span{
+    padding-top: 10px;
+} */
+.quest li{
+    list-style: none;
+}
+.left_container{
+    width: 10%;
+    float: left;
+    margin-right: 1%;
+    /* background: #58797e; */
+} 
+.right_container{
+    width: 80%;
+    float: left;
+    /* background: #00bcd4; */
+}
+.left_half, .right_half{
+    width: 50%;
+    float: left;
+}
+.quest a{
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #00bcd4;
+    float: right;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+.quest hr{
+    width: 100%;
+}
+img{
+    border-radius: 10px;
+}
+.footer {
+    padding: 20px 0;
+    text-align: center;
+    background: #00bcd4;
+	width: 100%;
+    margin-top: 10px;
+    color: #fff;
+}
+.footer a{
+    text-decoration: none;
+    color: black;
+}
+
+
+@media screen and (max-width: 600px) {
+}
+@media screen and (max-width: 800px) {
+    
+    body{
+        background: #00bcd4;
+    }
+}
