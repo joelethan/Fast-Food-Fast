@@ -71,34 +71,6 @@ body{
 .quest hr{
     width: 100%;
 }
-.quest .foo .in{
-    font-size: 5px;
-    background: #00bcd4;
-}
-.food{
-    margin: 50px 10%;
-    width: 80%;
-    padding: 20px 40px ;
-    background: rgba(0, 0, 0,.8);
-    box-sizing: border-box;
-    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
-    border-radius: 15px;
-    color:  white;
-    text-align: left;
-}
-.food .foo{
-    width: 20%;
-    background: #00bcd4;
-    float: left;
-    margin: 0% 2.5%;
-    text-align: center;
-    border-radius: 5px;
-
-}
-.quest .date{
-    text-align: right;
-    font-size: 12px;
-}
 .quest .foo{
     width: 20%;
     float: left;
@@ -107,7 +79,7 @@ body{
     margin: 0% 2.5%;
 }
 
-.quest .foo img{
+img{
     border-radius: 10px;
 }
 .footer {
