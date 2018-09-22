@@ -8,7 +8,7 @@ instal:
 
 
 script:
-  - pytest
+  - pytest app/tests --cov=app/api --cov-report term-missing
 
 after_success:
   - coveralls
