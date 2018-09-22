@@ -22,7 +22,7 @@ def get_orders():
             
 
 
-@app.route('/api/v1/orders/<order_id>', methods=['DELETE','GET','PUT']) 
+@app.route('/api/v1/orders/<int:order_id>', methods=['DELETE','GET','PUT']) 
 def get_order(order_id):
     if request.method == 'GET':
         # Get an Order
