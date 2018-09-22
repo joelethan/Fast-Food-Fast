@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, json
-from model import OrderList
+from api.model import OrderList 
  
 app = Flask(__name__)
 order = OrderList() 

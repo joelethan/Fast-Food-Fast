@@ -1,7 +1,8 @@
 import json
 import unittest
-from api import app, order
-from model import OrderList
+from api.model import OrderList
+
+from api.api import app, order
 
 
 

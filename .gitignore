@@ -1,1 +1,6 @@
- 
+.vscode/
+venvt/
+__pycache__/
+sep/
+.coverage
+.pytest_cache/
