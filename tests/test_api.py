@@ -42,6 +42,11 @@ class APITestCase(unittest.TestCase):
         self.assertFalse(OrderList().get_all_orders())
 
 
+    def test_index(self):
+        resp_get = self.client.get('/')
+        self.assertEqual(resp_get.status_code, 200)
+
+
     def test_add_order(self):
         self.assertFalse(self.order.get_all_orders())
         self.assertEqual(len(self.order.get_all_orders()), 0)
@@ -56,6 +61,15 @@ class APITestCase(unittest.TestCase):
         self.client.post('/api/v1/orders', data=json.dumps(self.new_order), content_type='application/json')
         resp_get = self.client.get('/api/v1/orders/1')
         self.assertEqual(resp_get.status_code, 200)
+        resp_get = self.client.get('/api/v1/orders/4')
+        self.assertEqual(resp_get.status_code, 400)
+
+
+    def test_get_all_order(self):
+        self.assertFalse(self.order.get_all_orders())
+        self.client.post('/api/v1/orders', data=json.dumps(self.new_order), content_type='application/json')
+        resp_get = self.client.get('/api/v1/orders')
+        self.assertEqual(resp_get.status_code, 200)
 
 
     def test_change_status(self):
@@ -65,6 +79,8 @@ class APITestCase(unittest.TestCase):
         resp_chang = self.client.put('/api/v1/orders/1', data=json.dumps(self.status), content_type='application/json')
         self.assertNotIn('pending', str(resp_chang.data))
         self.assertEqual(resp_chang.status_code, 200)
+        resp_chang = self.client.put('/api/v1/orders/4', data=json.dumps(self.status), content_type='application/json')
+        self.assertEqual(resp_chang.status_code, 400)
     
 
     def test_empty_status(self):
