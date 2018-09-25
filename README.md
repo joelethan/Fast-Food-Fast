@@ -1,2 +1,81 @@
-# Fast-Food-Fast [![Build Status](https://travis-ci.org/joelethan/Fast-Food-Fast.svg?branch=api)](https://travis-ci.org/joelethan/Fast-Food-Fast) [![Coverage Status](https://coveralls.io/repos/github/joelethan/Fast-Food-Fast/badge.svg?branch=api)](https://coveralls.io/github/joelethan/Fast-Food-Fast?branch=api)
+# Fast-Food-Fast [![Build Status](https://travis-ci.org/joelethan/Fast-Food-Fast.svg?branch=api)](https://travis-ci.org/joelethan/Fast-Food-Fast) [![Maintainability](https://api.codeclimate.com/v1/badges/0d7befbf06875d2ca626/maintainability)](https://codeclimate.com/github/joelethan/Fast-Food-Fast/maintainability) [![Coverage Status](https://coveralls.io/repos/github/joelethan/Fast-Food-Fast/badge.svg?branch=api)](https://coveralls.io/github/joelethan/Fast-Food-Fast?branch=api)
 Fast-Food-Fast is a food delivery service app for a restaurant.
+
+## Getting Started
+
+ Clone the repository https://github.com/joelethan/Fast-Food-Fast
+
+## Requirements
+
+- Have Python 3 installed
+- Have a virtual environmrnt installed to separate the project's packages from the computer's packages
+- Have Postman installed to test the API endpoints
+
+## Installation
+A step by step guide on how to setup and run the application. 
+
+ Change directory into the projects root by running the command in terminal or command line prompt
+```
+cd Fast-Food-Fast
+```
+
+ Create a virtual environment and activate it
+```
+virtualenv venv
+```
+```
+.\venv\Scripts\activate
+```
+
+ Install project packages
+```
+pip install -r requirements.txt
+```
+
+ Check if packages are installed
+```
+pip freeze
+```
+
+Expected output
+```
+astroid==2.0.4
+atomicwrites==1.2.1
+Jinja2==2.10
+..............
+..............
+..............
+urllib3==1.23
+Werkzeug==0.14.1
+wrapt==1.10.11
+```
+
+ Checkout the `api` branch
+```
+git checkout api
+```
+
+ Run the API
+```
+python api.py
+```
+
+ Expected ouput
+```
+ * Serving Flask app "app.views" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 294-773-545
+ * Running on http://127.0.0.1:5003/ (Press CTRL+C to quit)
+```
+
+## Project link
+Heroku: https://joelbootcamp12.herokuapp.com
+
+## Author
+
+Katusiime Joel Ian
