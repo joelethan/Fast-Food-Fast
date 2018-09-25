@@ -1,0 +1,135 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #3d9aa7;
+    
+    background-attachment:fixed;
+    background-size: cover;
+}
+.topnav {
+    padding: 30px 0;
+    background: rgba(0, 0, 0,.8);
+	width: 100%;
+    color: #fff;
+}
+.topnav .links{
+   margin-left: 16px;
+}
+.topnav a{
+    padding: 10px 10px;
+    text-decoration: none;
+    display: inline;
+    background-color: #00bcd4;
+    border-radius: 5px;
+}
+.topnav a:hover{
+    background: #3d9aa7;
+}
+.btn-logout{
+    float: right;
+    margin-right: 16px;
+}
+.heada{
+    margin: 50px 10%;
+    width: 80%;
+    padding: 20px 40px ;
+    background: rgba(0, 0, 0,.8);
+    box-sizing: border-box;
+    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
+    border-radius: 15px;
+    text-align: center;
+    color: #fff;
+}
+.heada h2{
+    font-size: 40px;
+    color: #00bcd4;
+}.heada h3{
+    margin-top: -30px;
+    font-size: 25px;
+    color: #00bcd4;
+}
+.quest{
+    margin: 50px 5%;
+    width: 90%;
+    padding: 20px 20px ;
+    background: rgba(0, 0, 0,.8);
+    box-sizing: border-box;
+    box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
+    border-radius: 10px;
+    color:  white;
+    text-align: left;
+}
+.quest a{
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: #00bcd4;
+    float: right;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+.quest hr{
+    width: 100%;
+}
+.quest .foo{
+    width: 20%;
+    float: left;
+    text-align: center;
+    padding-top: 10px;
+    margin: 0% 2.5%;
+}
+
+img{
+    border-radius: 10px;
+}
+.footer {
+    padding: 20px 0;
+    text-align: center;
+    background: #00bcd4;
+	width: 100%;
+    margin-top: 10px;
+    color: #fff;
+}
+.footer a{
+    text-decoration: none;
+    color: black;
+}
+
+
+@media screen and (max-width: 800px) {
+    .box{
+        top: 30%;
+    }
+    .quest .foo{
+        width: 40%;
+        float: left;
+        text-align: center;
+        padding-top: 10px;
+        margin: 3% 5%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    
+    .btn-logout{
+        float: none;
+        margin-right: 0px;
+    }
+    .topnav a{
+        display: block;
+        border-radius: 3px;
+        text-align: center;
+        margin-right: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    
+    .quest .foo{
+        width: 60%;
+        float: left;
+        text-align: center;
+        padding-top: 10px;
+        margin: 3% 15%;
+    }
+}
