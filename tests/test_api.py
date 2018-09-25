@@ -1,8 +1,8 @@
 import json
 import unittest
-from api.model import OrderList
+from app.model import OrderList
 
-from api.api import app, order
+from api import app, order
 
 
 
@@ -103,9 +103,4 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(resp_post.status_code, 201)
         resp = self.client.delete('/api/v1/orders/1')
         self.assertEqual(resp.status_code, 202)
-
-
-
-
-
 
