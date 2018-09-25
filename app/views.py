@@ -43,6 +43,3 @@ def get_order(order_id):
                 return jsonify({"Search":order.update_status(order_id, data['status'])}), 200
             return jsonify("Order Not Found"), 400
         return jsonify('No status')
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5003)
