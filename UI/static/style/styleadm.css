@@ -30,7 +30,7 @@ tr:nth-child(even) {
 
 .topnav {
     padding: 30px 0;
-    background: rgba(0, 0, 0,.8);
+    background: rgba(0, 0, 0,.7);
 	width: 100%;
     color: #fff;
 }
@@ -48,7 +48,7 @@ tr:nth-child(even) {
     margin: 50px 10%;
     width: 80%;
     padding: 20px 40px ;
-    background: rgba(0, 0, 0,.8);
+    background: rgba(0, 0, 0,.5);
     box-sizing: border-box;
     box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 15px;
@@ -74,7 +74,7 @@ tr:nth-child(even) {
     margin: 50px 5%;
     width: 90%;
     padding: 20px 20px ;
-    background: rgba(0, 0, 0,.8);
+    background: rgba(0, 0, 0,.6);
     box-sizing: border-box;
     box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 10px;

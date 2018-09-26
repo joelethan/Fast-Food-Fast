@@ -2,22 +2,45 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background: #3d9aa7;
+    /* background: #3d9aa7; */
+    background-image: url("../img/bckgrnd.jpg") ;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 .box{
+    float: left;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 50%;
-    padding: 20px 40px ;
-    background: rgba(0, 0, 0,.8);
+    width: 90%; 
+    /* padding: 20px 40px ; */
     box-sizing: border-box;
+    background: rgba(68, 67, 67, 0.7);
     box-shadow: 0 15px 15px rgba(0, 0, 0,.5);
     border-radius: 15px
 }
-.box h2{
+.box-left{
+    width: 40%;
+    float: left;
+    padding: 20px 5% ;
+    border-radius: 15px 0px 0px 15px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
+}
+.box-right{
+    padding: 20px 5% ;
+    background: rgba(0, 0, 0,.7);
+    /* box-shadow: 0 15px 15px rgba(0, 0, 0,.5); */
+    border-radius: 0px 15px 15px 0px;
+    width: 40%;
+    float: right;
+}
+.box-left h2,.box-left h1{
+    color: #00bcd4;
+}
+.box-right h2{
     margin-bottom: 20px;
     padding: 0;
     color: #fff;
