@@ -29,12 +29,13 @@ def get_order(order_id):
         if order.get_order(order_id):
             return jsonify({"Search":order.get_order(order_id)}), 200
         return jsonify("Order Not Found"), 400
-    
-    elif request.method == 'DELETE': 
-        # Delete an Order
-        if order.delete_order(order_id):
-            return jsonify("Order Deleted"), 202
-        return jsonify("Order Not Found"), 400
+
+    # will be implemented later
+    # elif request.method == 'DELETE': 
+    #     # Delete an Order
+    #     if order.delete_order(order_id):
+    #         return jsonify("Order Deleted"), 202
+    #     return jsonify("Order Not Found"), 400
     else: 
         # Update status
         data = request.get_json()

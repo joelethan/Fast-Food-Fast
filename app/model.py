@@ -48,12 +48,13 @@ class OrderList():
                 return order
             return False
 
-    def delete_order(self, order_id):
-        for order in self.orders_list:
-            if order['order_id']==order_id:
-                self.orders_list.remove(order)
-                return order
-            return False
+    # will be implemented later
+    # def delete_order(self, order_id):
+    #     for order in self.orders_list:
+    #         if order['order_id']==order_id:
+    #             self.orders_list.remove(order)
+    #             return order
+    #         return False
  
     def find_specific_order(self, foodname):
         for order in self.orders_list:
