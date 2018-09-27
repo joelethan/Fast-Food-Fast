@@ -15,10 +15,9 @@ def get_orders():
     else:
         data = request.get_json()
         if data:
-        # if data not in order.get_all_orders():
-            new_order = order.add_order(data['order_id'], data['foodname'], data['quantity'], data['status'])
+            order_id = 1+order.get_highest_order_id()
+            new_order = order.add_order(order_id, data['foodname'], data['quantity'], data['status'])
             return jsonify({"Added Order":new_order}), 201
-        # return jsonify({"Added Order":'new_order'}), 201
             
 
 
@@ -39,8 +38,14 @@ def get_order(order_id):
     else: 
         # Update status
         data = request.get_json()
-        if data['status']:
-            if order.get_order(order_id):
-                return jsonify({"Search":order.update_status(order_id, data['status'])}), 200
-            return jsonify("Order Not Found"), 400
-        return jsonify('No status')
+        if order.get_order(order_id):
+            return jsonify({"Search":order.update_status(order_id, data['status'])}), 200
+        return jsonify("Order Not Found"), 400
+
+@app.errorhandler(405)
+def url_not_found(error):
+    return jsonify({'message':'Requested method not allowed, try a different method'}), 405
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return jsonify({'message':'page not found on server, check the url'}), 404
