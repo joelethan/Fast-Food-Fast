@@ -12,7 +12,7 @@ class Order():
 class OrderList():
 
     def __init__(self):
-        self.orders_list = []# {'order_id':1, 'foodname':'steak', 'quantity': 5,'status':'pending'},{'order_id':2, 'foodname':'pizza', 'quantity': 2,'status':'pending'}]
+        self.orders_list = []# {'order_id':1, 'foodname':'steak', 'quantity': 5,'status':'pending'},{'order_id':2, 'foodname':'pizza', 'quantity': 2,'status':'pending'},{'order_id':3, 'foodname':'pizza', 'quantity': 2,'status':'pending'},{'order_id':4, 'foodname':'pizza', 'quantity': 2,'status':'pending'},{'order_id':5, 'foodname':'pizza', 'quantity': 2,'status':'pending'}]
 
     def add_order(self, order_id, foodname, quantity, status):
         if not type(quantity) == int:
@@ -37,7 +37,6 @@ class OrderList():
             if order['order_id']==order_id: 
                 order['status']=status
                 return order
-            return False
 
     def get_all_orders(self):
         return self.orders_list
@@ -46,7 +45,6 @@ class OrderList():
         for order in self.orders_list:
             if order['order_id']==order_id:
                 return order
-            return False
 
     # will be implemented later
     # def delete_order(self, order_id):
@@ -54,9 +52,16 @@ class OrderList():
     #         if order['order_id']==order_id:
     #             self.orders_list.remove(order)
     #             return order
-    #         return False
  
-    def find_specific_order(self, foodname):
-        for order in self.orders_list:
-            if order['foodname']==foodname:
-                return order
+    # def find_specific_order(self, foodname):
+    #     for order in self.orders_list:
+    #         if order['foodname']==foodname:
+    #             return order
+
+    def get_highest_order_id(self):
+        id_list=[]
+        if self.orders_list:
+            for order in self.orders_list:
+                id_list.append(order['order_id'])
+            return(max(id_list))
+        return 0

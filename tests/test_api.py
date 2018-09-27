@@ -47,6 +47,12 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(resp_get.status_code, 200)
 
 
+    def test_get_highest_order_id(self):
+        self.assertEqual(self.order.get_highest_order_id(), 0)
+        self.client.post('/api/v1/orders', data=json.dumps(self.new_order), content_type='application/json')
+        self.assertEqual(self.order.get_highest_order_id(), 1)
+
+
     def test_add_order(self):
         self.assertFalse(self.order.get_all_orders())
         self.assertEqual(len(self.order.get_all_orders()), 0)
@@ -112,6 +118,11 @@ class APITestCase(unittest.TestCase):
         self.assertFalse(self.order.get_all_orders())
         self.assertRaises(ValueError, self.order.add_order, 1, 'foodname', '5', 'pending')
 
+
+    def test_url_not_found(self):
+        resp_get = self.client.get('/api/v1/orders/food')
+        self.assertEqual(resp_get.status_code, 404)
+        
 
     @unittest.skip(' ')
     def test_delete_order(self):
