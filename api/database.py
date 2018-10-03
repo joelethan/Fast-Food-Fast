@@ -10,7 +10,6 @@ class DatabaseConnection:
 								port="5432")
 			self.connection.autocommit = True
 			self.cursor = self.connection.cursor()
-			print('Conneced to db')
 
 		except Exception as e:
 			print(e)
