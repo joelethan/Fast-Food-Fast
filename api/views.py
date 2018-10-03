@@ -6,7 +6,6 @@ import jwt
 import datetime
 from functools import wraps
 import os
-from instance.config import app_config
 
 db = DatabaseConnection()
 
