@@ -1,5 +1,5 @@
-from app import views 
+from app.views import app 
 
 
 if __name__ == "__main__":
-    views.app.run(debug=True, port=5003) 
+    app.run(debug=True, port=5003) 
