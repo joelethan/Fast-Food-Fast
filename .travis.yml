@@ -9,7 +9,7 @@ services:
 before_script:
 
   - psql -c 'create database postgres;' -U postgres
-  - python create_tables.py
+  - python travis_tables.py
 script:
   - pytest tests --cov=app --cov-report term-missing
 after_success:
