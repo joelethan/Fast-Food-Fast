@@ -1,15 +1,12 @@
 language: python
 python:
   - 3.6
-
 install:
   - pip install -r requirements.txt
 services:
   - postgresql
 before_script:
-
-  # - psql -c 'create database postgres;' -U postgres
-  - psql -c 'create database jack;' -U postgres
+  - psql -c 'create database mydb;' -U postgres
 script:
   - pytest app/tests --cov=app/views --cov-report term-missing
 after_success:
