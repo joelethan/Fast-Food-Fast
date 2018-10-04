@@ -1,0 +1,16 @@
+language: python
+python:
+  - 3.6
+
+install:
+  - pip install -r requirements.txt
+services:
+  - postgresql
+before_script:
+
+  - psql -c 'create database postgres;' -U postgres
+  - python create_tables.py
+script:
+  - pytest tests --cov=app --cov-report term-missing
+after_success:
+  - coveralls
