@@ -11,6 +11,6 @@ before_script:
   # - psql -c 'create database postgres;' -U postgres
   - psql -c 'create database jack;' -U postgres
 script:
-  - pytest app\tests --cov=app\views --cov-report term-missing
+  - pytest app/tests --cov=app/views --cov-report term-missing
 after_success:
   - coveralls
