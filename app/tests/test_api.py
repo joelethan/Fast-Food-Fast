@@ -15,7 +15,7 @@ class APITestCase(TestCase):
         #     connection = db
         #     connection.drop_tables()
         #     connection.create_tables()
-        db.drop_tables()
+        # db.drop_tables()
         db.create_tables()
 
     def tearDown(self):
@@ -23,7 +23,7 @@ class APITestCase(TestCase):
         #     connection = db
         #     connection.drop_tables()
         #     connection.create_tables()
-        db.drop_tables()
+        # db.drop_tables()
         db.create_tables()
 
     def test_db(self):
