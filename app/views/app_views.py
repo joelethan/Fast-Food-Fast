@@ -51,12 +51,15 @@ def add_user():
 
     if not type(username) == str:
         return jsonify({'message':'Username must be string'}), 400
+    username=(username).strip()
 
     if not type(email) == str:
         return jsonify({'message':'email must be string'}), 400
+    email = (email).strip()
 
     if not type(password) == str:
         return jsonify({'message':'password must be string'}), 400
+    password = (password).strip()
 
     if not username.strip():
         return jsonify({'message':'Username cannot be empty'}), 400
@@ -86,11 +89,21 @@ def add_user():
     return jsonify({'message':'User {} created'.format(username)}), 201
 
 @app.route('/auth/login', methods=['POST'])
+@swag_from('../Docs/signin.yml')
 def login():
 
     data = request.get_json()
-    req_username = (data['username']).strip()
-    req_password = (data['password']).strip()
+    req_username = data['username']
+    req_password = data['password']
+
+    if type(req_username) == str:
+        return jsonify({'message':'Username must be string'}), 400
+    req_username=(req_username).strip()
+
+    if type(req_password) == str:
+        return jsonify({'message':'Username must be string'}), 400
+    req_password=(req_password).strip()
+
 
     db_user = db.get_user('username', (req_username).strip())
 
@@ -123,9 +136,14 @@ def add_order(current_user):
     food_id = data['food_id']
     quantity = data['quantity']
 
-
     if not type(user_id) == int:
-        return jsonify({'message':'User_id must be Int'}), 400
+        return jsonify({'message':'user_id must be interger'}), 400
+    if not type(food_id) == int:
+        return jsonify({'message':'food_id must be interger'}), 400
+    if not type(quantity) == int:
+        return jsonify({'message':'quantity must be interger'}), 400
+
+
     
     db.place_order(user_id, food_id, quantity)
     return jsonify({'message' : 'Order recieved'}), 201
@@ -207,12 +225,13 @@ def add_2_menu(current_user):
 
     if not type(foodname) == str:
         return jsonify({'message':'Foodname must be String!!'}), 400
+    foodname = (foodname).strip
 
-    if not foodname.strip():
+    if not foodname:
         return jsonify({'message':'Foodname cannot be empty!!'}), 400
 
     
-    db.add_food_to_menu((foodname).strip(), price)
+    db.add_food_to_menu(foodname, price)
     return jsonify({'Order' : '{} added to the Menu'.format(foodname.title())}), 201
 
 
