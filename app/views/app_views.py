@@ -45,8 +45,8 @@ def index():
 def add_user():
 
     data = request.get_json()
-    username = (data['username']).strip()
-    email = (data['email']).strip()
+    username = data['username']
+    email = data['email']
     password = generate_password_hash(data['password'])
 
     if not type(username) == str:
@@ -82,7 +82,7 @@ def add_user():
     if db.get_user('email', email):
         return jsonify({'message':'Your email address is already registered'}), 400
 
-    db.add_user(username, email, password)
+    db.add_user((username).strip(), (email).strip(), (password).strip())
     return jsonify({'message':'User {} created'.format(username)}), 201
 
 @app.route('/auth/login', methods=['POST'])
@@ -92,7 +92,7 @@ def login():
     req_username = (data['username']).strip()
     req_password = (data['password']).strip()
 
-    db_user = db.get_user('username', req_username)
+    db_user = db.get_user('username', (req_username).strip())
 
     if not db_user:
         return make_response('Could not verify', 401, 
@@ -100,7 +100,7 @@ def login():
 
     user = User(db_user[0], db_user[1], db_user[2], db_user[3], db_user[4])
 
-    if user.username == req_username and check_password_hash( user.password, req_password):
+    if user.username == req_username and check_password_hash( user.password, (req_password).strip()):
         token = jwt.encode({'email':user.email, 'admin':user.admin, 
                     'exp':datetime.datetime.utcnow()+ datetime.timedelta(hours=60)}, app.config['SECRET_KEY'])
 
@@ -169,7 +169,7 @@ def update_status(current_user, id):
 
 
     data = request.get_json()
-    status = (data['status']).strip()
+    status = data['status']
 
     if not type(status) == str:
         return jsonify({'message':'Status must be String'}), 400
@@ -178,7 +178,7 @@ def update_status(current_user, id):
     if not status.title() in ['New','Processing','Cancelled','Complete']:
         return ({'message':"Status must be in the given list: ['New','Processing','Cancelled','Complete']"})
 
-    db.update_status(id, status)
+    db.update_status(id, (status).strip())
     return jsonify({'message' : 'Order status Updated to {}'.format(status)}), 202
 
 
@@ -199,7 +199,7 @@ def add_2_menu(current_user):
 
 
     data = request.get_json()
-    foodname = (data['foodname']).strip()
+    foodname = data['foodname']
     price = data['price']
 
     if not type(price) == int:
@@ -212,7 +212,7 @@ def add_2_menu(current_user):
         return jsonify({'message':'Foodname cannot be empty!!'}), 400
 
     
-    db.add_food_to_menu(foodname, price)
+    db.add_food_to_menu((foodname).strip(), price)
     return jsonify({'Order' : '{} added to the Menu'.format(foodname.title())}), 201
 
 

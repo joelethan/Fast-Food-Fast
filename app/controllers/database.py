@@ -5,9 +5,9 @@ class DatabaseConnection:
 	def __init__(self):
 		try:
 			postgres = "postgres"
-			# if os.getenv('APP_SETTINGS') == 'testing':
-			# 	postgres = "mydb"
-			# print(os.getenv('APP_SETTINGS'))
+			if os.getenv('APP_SETTINGS') == 'testing':
+				postgres = "mydb"
+			print(os.getenv('APP_SETTINGS'))
 			self.connection = psycopg2.connect(database=postgres,
 								user="postgres",
 								host="localhost",
@@ -56,7 +56,6 @@ class DatabaseConnection:
 
 
 	def get_orders(self):
-		# query = "SELECT row_to_json(row) FROM () row;"
 		query = "SELECT * FROM orders;"
 		self.cursor.execute(query)
 		orders = self.cursor.fetchall()
@@ -86,7 +85,6 @@ class DatabaseConnection:
 
 
 	def get_user(self, column, value):
-		# query = "SELECT row_to_json(row) FROM (SELECT * FROM users WHERE {} = '{}') row;".format(column, value)
 		query = "SELECT * FROM users WHERE {} = '{}';".format(column, value)
 		self.cursor.execute(query)
 		user = self.cursor.fetchone()
@@ -113,7 +111,6 @@ class DatabaseConnection:
 
 
 	def get_history_by_userid(self, userid):
-		# query = "SELECT row_to_json(row) FROM () row;"
 		query = "SELECT * FROM orders WHERE user_id = '{}'".format(userid)
 		self.cursor.execute(query)
 		history = self.cursor.fetchall()

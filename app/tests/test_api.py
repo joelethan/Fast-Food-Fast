@@ -46,7 +46,6 @@ class APITestCase(TestCase):
 
 
     def test_get_menu(self):
-        # db.auto_admin()
         db.add_food_to_menu('Chicken', 20000)
         self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
                             content_type='application/json')
@@ -56,14 +55,6 @@ class APITestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('Chicken', str(response.json['Orders'])) 
 
-    # def test_get_orders(self):
-    #     self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
-    #                         content_type='application/json')
-    #     db.auto_admin()
-    #     login_resp = self.client.post('/auth/login', data=json.dumps(self.user_login), 
-    #                         content_type='application/json')
-    #     response = self.client.get('/api/orders', headers=({"x-access-token": login_resp.json['token']}))
-    #     self.assertEqual(response.status_code, 200)
 
     def test_history(self):
         db.add_food_to_menu('Chicken',20000)
@@ -78,15 +69,6 @@ class APITestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    # def test_add_order(self):
-    #     db.add_food_to_menu('meat',10000)
-    #     db.add_food_to_menu('Chicken',20000)
-    #     self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
-    #                         content_type='application/json')
-    #     login_resp = self.client.post('/auth/login', data=json.dumps(self.user_login), 
-    #                         content_type='application/json')
-    #     response = self.client.post('/users/orders', data=json.dumps(self.neworder), headers=({"x-access-token": login_resp.json['token']}))
-    #     self.assertEqual(response.status_code, 201)
 
     def test_get_orders(self):
         db.add_food_to_menu('meat',10000)
@@ -102,6 +84,7 @@ class APITestCase(TestCase):
         response = self.client.get('/api/orders', headers=({"x-access-token": login_resp.json['token']}))
         self.assertEqual(response.status_code, 200)
 
+
     def test_update_status(self):
         db.add_food_to_menu('meat',10000)
         self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
@@ -116,5 +99,23 @@ class APITestCase(TestCase):
         self.assertEqual(response.status_code, 202)
 
 
+    def test_user_to_admin(self):
+        self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
+                            content_type='application/json')
+        db.auto_admin()
+        login_resp=self.client.post('/auth/login', data=json.dumps(self.user_login), 
+                            content_type='application/json')
+        db.add_user('joelhtest','joelh@test','password')
+        respons = self.client.put('/api/users/2', headers=({"x-access-token": login_resp.json['token']}))
+        self.assertEqual(respons.status_code, 202)
 
-         
+
+    def test_user_to_admin_by_non_user(self):
+        self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
+                            content_type='application/json')
+        db.auto_admin()
+        self.client.post('/auth/login', data=json.dumps(self.user_login), 
+                            content_type='application/json')
+        db.add_user('joelhtest','joelh@test','password')
+        respons = self.client.put('/api/users/2')
+        self.assertEqual(respons.status_code, 401)

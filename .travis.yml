@@ -8,6 +8,6 @@ services:
 before_script:
   - psql -c 'create database mydb;' -U postgres
 script:
-  - pytest app/tests --cov=app/views --cov-report term-missing
+  - pytest app/tests --cov=app/views --cov=app/models --cov=app/controllers --cov-report term-missing
 after_success:
   - coveralls
