@@ -101,7 +101,8 @@ def login():
     user = User(db_user[0], db_user[1], db_user[2], db_user[3], db_user[4])
 
     if user.username == req_username and check_password_hash( user.password, req_password):
-        token = jwt.encode({'email':user.email, 'admin':user.admin, 'exp':datetime.datetime.utcnow()+ datetime.timedelta(hours=60)}, app.config['SECRET_KEY'])
+        token = jwt.encode({'email':user.email, 'admin':user.admin, 
+                    'exp':datetime.datetime.utcnow()+ datetime.timedelta(hours=60)}, app.config['SECRET_KEY'])
 
         return jsonify({'token' : token.decode('UTF-8'), 'message':'User logged-in'}), 200
 
