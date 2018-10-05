@@ -15,7 +15,7 @@ class APITestCase(TestCase):
         #     connection = db
         #     connection.drop_tables()
         #     connection.create_tables()
-        db.drop_tables()
+        # db.drop_tables()
         db.create_tables()
 
     def tearDown(self):
@@ -24,7 +24,7 @@ class APITestCase(TestCase):
         #     connection.drop_tables()
         #     connection.create_tables()
         db.drop_tables()
-        db.create_tables()
+        # db.create_tables()
 
     def test_db(self):
         self.assertIsInstance(db, DatabaseConnection)
@@ -46,12 +46,11 @@ class APITestCase(TestCase):
 
 
     def test_signup(self):
-        self.assertFalse(db.get_users())
-        self.assertEqual(len(db.get_users()), 0)
+        len1 = len(db.get_users())
         response = self.client.post('/auth/signup', data=json.dumps(self.user_signUp),
                             content_type='application/json')
-        self.assertTrue(db.get_users())
-        self.assertEqual(len(db.get_users()), 1)
+        len2 = len(db.get_users())
+        self.assertEqual(len2, 1+len1)
         self.assertEqual(response.status_code, 201)
         self.assertIn('joeffl2', json.loads(response.data)['message'])
 

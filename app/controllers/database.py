@@ -5,9 +5,9 @@ class DatabaseConnection:
 	def __init__(self):
 		try:
 			postgres = "postgres"
-			if os.getenv('APP_SETTINGS') == 'testing':
-				postgres = "mydb"
-			print(os.getenv('APP_SETTINGS'))
+			# if os.getenv('APP_SETTINGS') == 'testing':
+			# 	postgres = "mydb"
+			# print(os.getenv('APP_SETTINGS'))
 			self.connection = psycopg2.connect(database=postgres,
 								user="postgres",
 								host="localhost",
