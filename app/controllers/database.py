@@ -4,14 +4,14 @@ import os
 class DatabaseConnection:
 	def __init__(self):
 		try:
-			postgres = "postgres"
+			postgres = "dbhe66q8dbvmg"
 			if os.getenv('APP_SETTINGS') == 'testing':
 				postgres = "mydb"
 			print(os.getenv('APP_SETTINGS'))
 			self.connection = psycopg2.connect(database=postgres,
-								user="postgres",
-								host="localhost",
-								password="166091postgres",
+								user="dzldwjlpgsjngo",
+								host="ec2-54-235-90-0.compute-1.amazonaws.com",
+								password="a818ada30ffd248d5f5d38b4161f8acec94983b81afea8fe2105a4293d9ac5a8",
 								port="5432")
 			self.connection.autocommit = True
 			self.cursor = self.connection.cursor()
