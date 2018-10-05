@@ -1,4 +1,4 @@
-# Fast-Food-Fast [![Build Status](https://travis-ci.org/joelethan/Fast-Food-Fast.svg?branch=api)](https://travis-ci.org/joelethan/Fast-Food-Fast) [![Maintainability](https://api.codeclimate.com/v1/badges/0d7befbf06875d2ca626/maintainability)](https://codeclimate.com/github/joelethan/Fast-Food-Fast/maintainability) [![Coverage Status](https://coveralls.io/repos/github/joelethan/Fast-Food-Fast/badge.svg?branch=api)](https://coveralls.io/github/joelethan/Fast-Food-Fast?branch=api)
+# Fast-Food-Fast [![Build Status](https://travis-ci.org/joelethan/Fast-Food-Fast.svg?branch=CI-travis)](https://travis-ci.org/joelethan/Fast-Food-Fast) [![Maintainability](https://api.codeclimate.com/v1/badges/0d7befbf06875d2ca626/maintainability)](https://codeclimate.com/github/joelethan/Fast-Food-Fast/maintainability) [![Coverage Status](https://coveralls.io/repos/github/joelethan/Fast-Food-Fast/badge.svg?branch=CI-travis)](https://coveralls.io/github/joelethan/Fast-Food-Fast?branch=CI-travis)
 Fast-Food-Fast is a food delivery service app for a restaurant.
 
 ## Getting Started
