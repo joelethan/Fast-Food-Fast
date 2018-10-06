@@ -45,9 +45,19 @@ def index():
 def add_user():
 
     data = request.get_json()
+
+    if 'username' not in list(data.keys()):
+        return jsonify({'message':'Error: Username field must be present'}), 400
+
+    if 'email' not in list(data.keys()):
+        return jsonify({'message':'Error: Email field must be present'}), 400
+
+    if 'password' not in list(data.keys()):
+        return jsonify({'message':'Error: Password field must be present'}), 400
+
     username = data['username']
     email = data['email']
-    password = generate_password_hash(data['password'])
+    password = data['password']
 
     if not type(username) == str:
         return jsonify({'message':'Username must be string'}), 400
@@ -74,7 +84,7 @@ def add_user():
         return jsonify({'message':'Username too short, should have atleast 5 character'}), 400
 
     if len(password)<5:
-        return jsonify({'message':'password too short, should have atleast 5 character'}), 400
+        return jsonify({'message':'Username too short, should have atleast 5 character'}), 400
 
     if not '@' in email:
         return jsonify({'message':'Invalid email format'}), 400
@@ -85,7 +95,10 @@ def add_user():
     if db.get_user('email', email):
         return jsonify({'message':'Your email address is already registered'}), 400
 
-    db.add_user((username).strip(), (email).strip(), (password).strip())
+
+    password = generate_password_hash(password)
+
+    db.add_user((username).strip(), (email).strip(), password)
     return jsonify({'message':'User {} created'.format(username)}), 201
 
 @app.route('/auth/login', methods=['POST'])
@@ -93,14 +106,21 @@ def add_user():
 def login():
 
     data = request.get_json()
+
+    if 'username' not in list(data.keys()):
+        return jsonify({'message':'Error: Username field must be present'}), 400
+
+    if 'password' not in list(data.keys()):
+        return jsonify({'message':'Error: Password field must be present'}), 400
+
     req_username = data['username']
     req_password = data['password']
 
-    if type(req_username) == str:
+    if not type(req_username) == str:
         return jsonify({'message':'Username must be string'}), 400
     req_username=(req_username).strip()
 
-    if type(req_password) == str:
+    if not type(req_password) == str:
         return jsonify({'message':'Username must be string'}), 400
     req_password=(req_password).strip()
 
@@ -131,6 +151,15 @@ def add_order(current_user):
     not just ids to be shown in postman"""
 
     data = request.get_json()
+
+    if 'user_id' not in list(data.keys()):
+        return jsonify({'message':'Error: User_id field must be present'}), 400
+
+    if 'food_id' not in list(data.keys()):
+        return jsonify({'message':'Error: Food_id field must be present'}), 400
+
+    if 'quantity' not in list(data.keys()):
+        return jsonify({'message':'Error: Quantity field must be present'}), 400
 
     user_id = data['user_id']
     food_id = data['food_id']
@@ -187,6 +216,10 @@ def update_status(current_user, id):
 
 
     data = request.get_json()
+
+    if 'status' not in list(data.keys()):
+        return jsonify({'message':'Error: Status field must be present'}), 400
+
     status = data['status']
 
     if not type(status) == str:
@@ -217,6 +250,13 @@ def add_2_menu(current_user):
 
 
     data = request.get_json()
+
+    if 'foodname' not in list(data.keys()):
+        return jsonify({'message':'Error: Foodname field must be present'}), 400
+
+    if 'price' not in list(data.keys()):
+        return jsonify({'message':'Error: Price field must be present'}), 400
+
     foodname = data['foodname']
     price = data['price']
 

@@ -4,14 +4,13 @@ import os
 class DatabaseConnection:
 	def __init__(self):
 		try:
-			postgres = "dbhe66q8dbvmg"
+			postgres = "postgres"
 			if os.getenv('APP_SETTINGS') == 'testing':
 				postgres = "mydb"
-			print(os.getenv('APP_SETTINGS'))
 			self.connection = psycopg2.connect(database=postgres,
-								user="dzldwjlpgsjngo",
-								host="ec2-54-235-90-0.compute-1.amazonaws.com",
-								password="a818ada30ffd248d5f5d38b4161f8acec94983b81afea8fe2105a4293d9ac5a8",
+								user="postgres",
+								host="localhost",
+								password="166091postgres",
 								port="5432")
 			self.connection.autocommit = True
 			self.cursor = self.connection.cursor()
@@ -77,7 +76,6 @@ class DatabaseConnection:
 
 
 	def get_an_order(self, column, value):
-		# query = "SELECT row_to_json(row) FROM () row;"
 		query = "SELECT * FROM orders WHERE {} = '{}'".format(column, value)
 		self.cursor.execute(query)
 		user = self.cursor.fetchone()
@@ -88,7 +86,6 @@ class DatabaseConnection:
 		query = "SELECT * FROM users WHERE {} = '{}';".format(column, value)
 		self.cursor.execute(query)
 		user = self.cursor.fetchone()
-		print(user)
 		return user
 
 
@@ -134,28 +131,3 @@ class DatabaseConnection:
 		if meal:
 			return True
 		return False
-
-# print(DatabaseConnection())
-# print(DatabaseConnection().duplicate_in_Items('menu','foodname','food'))
-
-# (DatabaseConnection().add_user('joel1', 'joel@mail', 'password'))			#
-
-# (DatabaseConnection().place_order(2, 1, 9))								#
-
-# print(DatabaseConnection().get_an_order('order_id', 2))					#
-
-# print(DatabaseConnection().update_status( 2, 'Pending'))					#
-
-# print(DatabaseConnection().get_menu())									#
-
-# (DatabaseConnection().add_food_to_menu('Beef', 20000))					#
-
-# print(DatabaseConnection().get_history_by_userid(1))						#
-
-# print(DatabaseConnection().get_orders())									#
-
-# print(DatabaseConnection().get_users())									#
-
-# (DatabaseConnection().drop_tables())									
-
-# print(DatabaseConnection().get_user('username', 'joejl'))						#
