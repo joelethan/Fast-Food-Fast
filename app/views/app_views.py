@@ -45,18 +45,31 @@ def index():
 def add_user():
 
     data = request.get_json()
-    username = (data['username']).strip()
-    email = (data['email']).strip()
-    password = generate_password_hash(data['password'])
+
+    if 'username' not in list(data.keys()):
+        return jsonify({'message':'Error: Username field must be present'}), 400
+
+    if 'email' not in list(data.keys()):
+        return jsonify({'message':'Error: Email field must be present'}), 400
+
+    if 'password' not in list(data.keys()):
+        return jsonify({'message':'Error: Password field must be present'}), 400
+
+    username = data['username']
+    email = data['email']
+    password = data['password']
 
     if not type(username) == str:
         return jsonify({'message':'Username must be string'}), 400
+    username=(username).strip()
 
     if not type(email) == str:
         return jsonify({'message':'email must be string'}), 400
+    email = (email).strip()
 
     if not type(password) == str:
         return jsonify({'message':'password must be string'}), 400
+    password = (password).strip()
 
     if not username.strip():
         return jsonify({'message':'Username cannot be empty'}), 400
@@ -71,7 +84,7 @@ def add_user():
         return jsonify({'message':'Username too short, should have atleast 5 character'}), 400
 
     if len(password)<5:
-        return jsonify({'message':'password too short, should have atleast 5 character'}), 400
+        return jsonify({'message':'Username too short, should have atleast 5 character'}), 400
 
     if not '@' in email:
         return jsonify({'message':'Invalid email format'}), 400
@@ -82,17 +95,37 @@ def add_user():
     if db.get_user('email', email):
         return jsonify({'message':'Your email address is already registered'}), 400
 
-    db.add_user(username, email, password)
+
+    password = generate_password_hash(password)
+
+    db.add_user((username).strip(), (email).strip(), password)
     return jsonify({'message':'User {} created'.format(username)}), 201
 
 @app.route('/auth/login', methods=['POST'])
+@swag_from('../Docs/signin.yml')
 def login():
 
     data = request.get_json()
-    req_username = (data['username']).strip()
-    req_password = (data['password']).strip()
 
-    db_user = db.get_user('username', req_username)
+    if 'username' not in list(data.keys()):
+        return jsonify({'message':'Error: Username field must be present'}), 400
+
+    if 'password' not in list(data.keys()):
+        return jsonify({'message':'Error: Password field must be present'}), 400
+
+    req_username = data['username']
+    req_password = data['password']
+
+    if not type(req_username) == str:
+        return jsonify({'message':'Username must be string'}), 400
+    req_username=(req_username).strip()
+
+    if not type(req_password) == str:
+        return jsonify({'message':'Username must be string'}), 400
+    req_password=(req_password).strip()
+
+
+    db_user = db.get_user('username', (req_username).strip())
 
     if not db_user:
         return make_response('Could not verify', 401, 
@@ -100,8 +133,9 @@ def login():
 
     user = User(db_user[0], db_user[1], db_user[2], db_user[3], db_user[4])
 
-    if user.username == req_username and check_password_hash( user.password, req_password):
-        token = jwt.encode({'email':user.email, 'admin':user.admin, 'exp':datetime.datetime.utcnow()+ datetime.timedelta(hours=60)}, app.config['SECRET_KEY'])
+    if user.username == req_username and check_password_hash( user.password, (req_password).strip()):
+        token = jwt.encode({'email':user.email, 'admin':user.admin, 
+                    'exp':datetime.datetime.utcnow()+ datetime.timedelta(hours=60)}, app.config['SECRET_KEY'])
 
         return jsonify({'token' : token.decode('UTF-8'), 'message':'User logged-in'}), 200
 
@@ -118,13 +152,27 @@ def add_order(current_user):
 
     data = request.get_json()
 
+    if 'user_id' not in list(data.keys()):
+        return jsonify({'message':'Error: User_id field must be present'}), 400
+
+    if 'food_id' not in list(data.keys()):
+        return jsonify({'message':'Error: Food_id field must be present'}), 400
+
+    if 'quantity' not in list(data.keys()):
+        return jsonify({'message':'Error: Quantity field must be present'}), 400
+
     user_id = data['user_id']
     food_id = data['food_id']
     quantity = data['quantity']
 
-
     if not type(user_id) == int:
-        return jsonify({'message':'User_id must be Int'}), 400
+        return jsonify({'message':'user_id must be interger'}), 400
+    if not type(food_id) == int:
+        return jsonify({'message':'food_id must be interger'}), 400
+    if not type(quantity) == int:
+        return jsonify({'message':'quantity must be interger'}), 400
+
+
     
     db.place_order(user_id, food_id, quantity)
     return jsonify({'message' : 'Order recieved'}), 201
@@ -168,7 +216,11 @@ def update_status(current_user, id):
 
 
     data = request.get_json()
-    status = (data['status']).strip()
+
+    if 'status' not in list(data.keys()):
+        return jsonify({'message':'Error: Status field must be present'}), 400
+
+    status = data['status']
 
     if not type(status) == str:
         return jsonify({'message':'Status must be String'}), 400
@@ -177,7 +229,7 @@ def update_status(current_user, id):
     if not status.title() in ['New','Processing','Cancelled','Complete']:
         return ({'message':"Status must be in the given list: ['New','Processing','Cancelled','Complete']"})
 
-    db.update_status(id, status)
+    db.update_status(id, (status).strip())
     return jsonify({'message' : 'Order status Updated to {}'.format(status)}), 202
 
 
@@ -198,7 +250,14 @@ def add_2_menu(current_user):
 
 
     data = request.get_json()
-    foodname = (data['foodname']).strip()
+
+    if 'foodname' not in list(data.keys()):
+        return jsonify({'message':'Error: Foodname field must be present'}), 400
+
+    if 'price' not in list(data.keys()):
+        return jsonify({'message':'Error: Price field must be present'}), 400
+
+    foodname = data['foodname']
     price = data['price']
 
     if not type(price) == int:
@@ -206,8 +265,9 @@ def add_2_menu(current_user):
 
     if not type(foodname) == str:
         return jsonify({'message':'Foodname must be String!!'}), 400
+    foodname = (foodname).strip
 
-    if not foodname.strip():
+    if not foodname:
         return jsonify({'message':'Foodname cannot be empty!!'}), 400
 
     
