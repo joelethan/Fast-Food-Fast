@@ -14,7 +14,11 @@ Fast-Food-Fast is a food delivery service app for a restaurant.
 ## Installation
 A step by step guide on how to setup and run the application. 
 
- Change directory into the projects root by running the command in terminal or command line prompt
+ Clone the application by running the command in terminal or command line prompt
+```
+git clone https://github.com/joelethan/Fast-Food-Fast.git
+```
+ Change directory into the project's root by running
 ```
 cd Fast-Food-Fast
 ```
@@ -52,12 +56,12 @@ wrapt==1.10.11
 
  Checkout the `api` branch
 ```
-git checkout api
+git checkout Chal3
 ```
 
  Run the API
 ```
-python api.py
+python run.py
 ```
 
  Expected ouput
@@ -74,7 +78,7 @@ python api.py
 ```
 
 ## Project link
-Heroku: https://joelbootcamp12.herokuapp.com
+Heroku: https://joelbootcampwk2.herokuapp.com/
 
 ## Author
 
