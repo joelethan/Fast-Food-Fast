@@ -80,16 +80,16 @@ python run.py
 
 | FEATURE | METHOD | END POINT|
 | --- | --- |--- |
-| Index page | GET | / 
-|Register a user | POST | auth/signup |
-| Login a user | POST | auth/login |
-| Place an order | POST | users/orders|
-| Get order history of a user | GET | api/orders/hist/user_id |
-| Get all orders | GET | api/orders |
-| Get a specific order | GET| api/orders/order_id |
-| Update an order status | PUT | api/orders/order_id |
-| Get all food items on the menu| GET | api/menu |
-| Add a meal to the menu | POST| api/menu |
+| Index page | GET | / |
+|Register a user | POST | /auth/signup |
+| Login a user | POST | /auth/login |
+| Place an order | POST | /users/orders|
+| Get order history of a user | GET | /api/orders/hist/user_id |
+| Get all orders | GET | /api/orders |
+| Get a specific order | GET| /api/orders/order_id |
+| Update an order status | PUT | /api/orders/order_id |
+| Get all food items on the menu| GET | /api/menu |
+| Add a meal to the menu | POST| /api/menu |
 
 ## Project link
 Heroku: https://joelbootcampwk2.herokuapp.com/
