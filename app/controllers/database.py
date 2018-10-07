@@ -4,16 +4,16 @@ import os
 class DatabaseConnection:
 	def __init__(self):
 		try:
-			postgres = "dbhe66q8dbvmg"
+			postgres = "d5jsn93qj6ipng"
 			if os.getenv('APP_SETTINGS') == 'testing':
 				postgres = "mydb"
 			self.connection = psycopg2.connect(database=postgres,
-								user="dzldwjlpgsjngo",
-								host="ec2-54-235-90-0.compute-1.amazonaws.com",
-								password="a818ada30ffd248d5f5d38b4161f8acec94983b81afea8fe2105a4293d9ac5a8",
+								user="smkebcmzcgzqqa",
+								host="ec2-174-129-18-98.compute-1.amazonaws.com",
+								password="bcd27e136da1e2e13234e6668aac0b35e6f73aeaca205e882bec0ecb45ad9901",
 								port="5432")
 			self.connection.autocommit = True
-			self.cursor = self.connection.cursor()
+			self.cursor = self.connection.cursor() 
 
 		except Exception as e:
 			print(e)
